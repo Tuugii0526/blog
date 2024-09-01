@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import { Header } from "@/components/general/Header";
+import { Header } from "@/components/Header/Header";
 
 const inter = Inter({ subsets: ["latin","cyrillic"] });
 // const inter = Inter({
