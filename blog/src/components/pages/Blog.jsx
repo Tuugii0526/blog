@@ -1,5 +1,5 @@
 import { Header } from "../Header/Header"
 
-export const Contact=()=>{
+export const Blog=()=>{
     return <Header/>
 }

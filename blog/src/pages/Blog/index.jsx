@@ -1,5 +1,5 @@
-import { Header } from "@/components/Header/Header";
+import { Blog } from "@/components/pages/Blog";
 
 export default function BlogPage(){
-    return <Header/>
+    return <Blog/>
 }

@@ -18,6 +18,11 @@ const inter = Inter({ subsets: ["latin","cyrillic"] });
 {/* <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span> */}
+const fetchData=()=>{
+  fetch('https://dev.to/api/articles').then(response=>response.json()).then(date=>)
+}
 export default function Home() {
-  return   <Header/>
+  return  <div className=" min-w-[320px] max-w-[1230px] mx-auto flex justify-center items-center ">
+<Header/>
+  </div>
 }

@@ -1,14 +1,15 @@
 import { MetaLogo } from "../svg/MetaLogo"
 import { HomeLogoContact } from "./HomeLogoContact"
+import { Navigation } from "./Navigation"
 
 export const Header=()=>{
-    return <div className=" min-w-[320px] max-w-[1230px]  mx-auto  ">
-        <div className="w-full h-[100px]  p-4 lg:p-0 flex justify-between items-center ">
+    return <div className="w-full h-[100px]  p-4 lg:p-0 flex justify-between items-center">
              <MetaLogo/>
-            <HomeLogoContact/>
-             <span class="material-symbols-outlined md:hidden">
+             <Navigation/>
+             <div className="md:hidden">
+             <span class="material-symbols-outlined ">
 menu
 </span>
+             </div>
         </div>
-    </div>
 }
