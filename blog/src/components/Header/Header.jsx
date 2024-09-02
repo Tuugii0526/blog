@@ -1,15 +1,21 @@
+import { useContext } from "react"
 import { MetaLogo } from "../svg/MetaLogo"
-import { HomeLogoContact } from "./HomeLogoContact"
 import { Navigation } from "./Navigation"
-
-export const Header=()=>{
-    return <div className="w-full h-[100px]  p-4 lg:p-0 flex justify-between items-center">
+export default function Header() {
+    return <div className="w-full h-[100px] bg-white p-4  flex justify-between items-center sticky top-0 ">
              <MetaLogo/>
              <Navigation/>
-             <div className="md:hidden">
-             <span class="material-symbols-outlined ">
-menu
+             <div className="md:hidden " >
+             {/* {
+                isClicked ? 
+                <span class="material-symbols-outlined">
+close
 </span>
+                : */}
+                <span className="material-symbols-outlined ">
+                    menu
+                    </span>
+             {/* } */}
              </div>
         </div>
 }
