@@ -1,9 +1,21 @@
-import {useState,createContext} from 'react';
-import { ClickedContext } from './Util/IsClickedContext';
-export default function ContextStateProvider({children}){
-    console.log(ClickedContext)
+import {useState,createContext,useContext} from 'react';
+const MenuHandleClickContext=createContext(null)
+const MenuIsClickedContext=createContext(null)
+export const useMenuIsClicked=()=>{
+    return useContext(MenuIsClickedContext)
+}
+export const useMenuHandleClick=()=>{
+    return useContext(MenuHandleClickContext)
+}
+export function ContextStateProvider({children}){
+    const [isClicked,setIsClicked]=useState(false)
+    const handleMenuClick=()=>{
+        setIsClicked(!isClicked)
+    }
    return (
-   <ClickedContext.Provider value={false}>
+   <MenuIsClickedContext.Provider value={isClicked}>
+   <MenuHandleClickContext.Provider value={handleMenuClick}>
     {children}
-   </ClickedContext.Provider>)
+   </MenuHandleClickContext.Provider>
+   </MenuIsClickedContext.Provider>)
 }

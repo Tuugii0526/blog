@@ -1,4 +1,4 @@
-import  ContextStateProvider  from "@/components/ContextStateProvider";
+import  {ContextStateProvider}  from "@/components/ContextStateProvider";
 import { Contact } from "@/components/pages/Contact";
 
 export default function ContactPage(){
