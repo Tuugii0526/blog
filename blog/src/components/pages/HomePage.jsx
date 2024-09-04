@@ -2,18 +2,29 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import  Header  from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import { Carousel } from "../Hero/Carousel";
 const inter = Inter({ subsets: ["latin","cyrillic"] });
 export default function HomePage() {
-  return  <div className="relative">
+  return  <div className="relative flex flex-col gap-[100px]">
 
-    <div className="w-full  ">
-    <div className=" min-w-[320px] max-w-[1230px]  mx-auto relative">
+    <div className="w-full sticky top-0 ">
+    <div className=" min-w-[320px] max-w-[1230px]  mx-auto ">
 <Header/>
   </div>
     </div>
 
 
-    <div className="w-full  bg-[#F6F6F7] fixed bottom-0">
+
+
+    <div className="w-full  ">
+    <div className=" min-w-[320px] max-w-[1230px] h-[3005px] flex flex-col gap-[100px] mx-auto relative">
+    <Carousel/>
+  </div>
+    </div>
+  
+
+
+    <div className="w-full  bg-[#F6F6F7] ">
       <div className=" min-w-[320px] max-w-[1230px]  mx-auto relative">
        <Footer/>
       </div>

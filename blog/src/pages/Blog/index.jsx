@@ -1,8 +1,8 @@
 import  {ContextStateProvider}  from "@/components/ContextStateProvider";
-import Blog from "@/components/pages/Blog";
+import BlogPage from "@/components/pages/BlogPage";
 
-export default function BlogPage(){
+export default function Blog(){
     return <ContextStateProvider>
-        <Blog/>
+        <BlogPage/>
     </ContextStateProvider>
 }

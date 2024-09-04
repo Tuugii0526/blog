@@ -1,7 +1,7 @@
 import Footer from "../Footer/Footer"
 import  Header  from "../Header/Header"
 
-export const Contact=()=>{
+export default function  BlogPage(){
     return  <div>
     <div className="w-full  ">
     <div className=" min-w-[320px] max-w-[1230px]  mx-auto relative">
@@ -15,4 +15,6 @@ export const Contact=()=>{
   </div>
     </div>
   </div>
+    
+    
 }

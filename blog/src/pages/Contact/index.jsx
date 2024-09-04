@@ -1,8 +1,8 @@
 import  {ContextStateProvider}  from "@/components/ContextStateProvider";
-import { Contact } from "@/components/pages/Contact";
+import { ContactPage } from "@/components/pages/ContactPage";
 
-export default function ContactPage(){
+export default function Contact(){
     return <ContextStateProvider>
-        <Contact/>
+        <ContactPage/>
     </ContextStateProvider>
 }
