@@ -4,7 +4,7 @@ import { useMenuHandleClick,useMenuIsClicked } from "../ContextStateProvider"
 export default function Header() {
     const menuIsClicked=useMenuIsClicked();
     const handleMenuClick=useMenuHandleClick();
-    return <div className="w-full h-[100px] bg-white p-4  flex justify-between items-center ">
+    return <div className="w-full h-[100px]  p-4  flex justify-between items-center ">
              <MetaLogo/>
              <Navigation/>
              <div className="md:hidden " onClick={handleMenuClick}>

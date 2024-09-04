@@ -1,0 +1,20 @@
+
+export const TagsIcon=({blog,special=true})=>{
+    const titles=blog.tags.split(/,\s/).map(title=>title.split(''))
+    titles.forEach(title=>{title[0]=title[0].toUpperCase()})
+    const fixedTitles=titles.map(title=>title.join(''))
+    let className;
+    if(special)
+    {
+        className='h-fit w-fit px-3 py-0.5 shadow-lg bg-[#4B6BFB] rounded-md  flex justify-center items-center text-white text-lg'
+    }
+    else
+    {
+        className='h-7 w-fit px-2 bg-[#4B6BFB] rounded-md flex justify-center items-center text-white text-lg'
+    }
+return <div className="w h-fit flex flex-wrap gap-2">
+{fixedTitles.map(title=>
+    <div className={className}>{title}</div>
+)}
+</div>
+} 

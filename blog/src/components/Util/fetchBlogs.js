@@ -1,3 +1,6 @@
-export const fetchBlogs=({perPage=0,tag="",tags="",top=0,userName="",fresh="",rising=""})=>{
-  return fetch(`https://dev.to/api/articles${!perPage ? '':'?per_page='+perPage}`).then(response=>response.json()).catch(new Error('noo mistake'))
-} 
+export const fetchBlogs=(setBlogs,tag='',top=0)=>{
+    fetch(`https://dev.to/api/articles?${!tag ? "":"tag="+tag}${!top ?"":"&top="+top}`).then(response=>response.json()).then(data=>{
+        setBlogs(data.filter(d=>d.cover_image))
+    }).catch((err)=>new Error(err))
+    
+ } 

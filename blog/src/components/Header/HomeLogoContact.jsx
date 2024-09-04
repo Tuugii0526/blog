@@ -1,5 +1,5 @@
 import { Work_Sans } from "next/font/google"
-import {Link} from 'react-router-dom'
+import Link from 'next/link'
 import React from 'react';
 const workSans=Work_Sans({subsets: ["latin"],
     weight:"400"
@@ -22,9 +22,10 @@ return <ul className={`flex ${ifFlexCol} ${(!ifFlexCol) ? 'gap-10' : 'gap-2'}`}>
  {
     sections.map((section,i)=>
     (<li key={i} className={`text-[#3B3C4A] ${(!ifFlexCol) ? 'hidden' : ''} md:block ${workSans.className}`}  id={section.id}>
-<a href={`/${section.title==='Home' ? '':section.title}`}>{section.title}</a>
+<Link href={`/${section.title==='Home' ? '/':section.title}`}>{section.title}</Link>
     </li>))
  }
 </ul>
+
 
 }
