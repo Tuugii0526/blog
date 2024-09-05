@@ -4,7 +4,7 @@ export const BlogTemplate=({blog,isAllBlog})=>{
 
 return <div className="w-[392px] h-[476px] rounded-xl border p-4 flex flex-col gap-4">
  <div className="w-full h-[240px]">
- <img src={`${blog.cover_image}`} alt='image for the blog' width={'100%'} height={'100%'} />
+ <img src={`${blog?.cover_image}`} alt='image for the blog' width={'100%'} height={'100%'} />
  </div>
 
 
@@ -17,9 +17,9 @@ return <div className="w-[392px] h-[476px] rounded-xl border p-4 flex flex-col g
 <div className="w-full h-[36px] flex items-center gap-5">
 {!isAllBlog && <>
 <div className="h-full w-9 rounded-full ">
-    <img src={`${blog.user.profile_image}`} alt="profile image" width={'100%'} height={'100%'}/>
+    <img src={`${blog?.user.profile_image}`} alt="profile image" width={'100%'} height={'100%'}/>
 </div>
-<p className="font-medium text-[#97989F]">{blog.user.name}</p>
+<p className="font-medium text-[#97989F]">{blog?.user.name}</p>
 </> }
 <p className='text-[#97989F]  leading-6 font-normal'>{dateFormatter(blog)}</p>
 </div>
