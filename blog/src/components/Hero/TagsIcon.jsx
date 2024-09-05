@@ -1,8 +1,10 @@
-
-export const TagsIcon=({blog,special=true})=>{
-    const titles=blog.tags.split(/,\s/).map(title=>title.split(''))
+export const toUppercaseTags=(tags)=>{
+    const titles=tags.split(/,\s/).map(title=>title.split(''))
     titles.forEach(title=>{title[0]=title[0].toUpperCase()})
-    const fixedTitles=titles.map(title=>title.join(''))
+    return  titles.map(title=>title.join(''))
+}
+export const TagsIcon=({blog,special=true})=>{
+    const fixedTitles=toUppercaseTags(blog.tags)
     let className;
     if(special)
     {
@@ -10,7 +12,7 @@ export const TagsIcon=({blog,special=true})=>{
     }
     else
     {
-        className='h-7 w-fit px-2 bg-[#4B6BFB] rounded-md flex justify-center items-center text-white text-sm md:text-lg'
+        className='h-7 w-fit px-2 bg-[#4B6BFB0D] rounded-md flex justify-center items-center text-[#4B6BFB] text-sm md:text-lg'
     }
 return <div className="w h-fit flex flex-wrap gap-2">
 {fixedTitles.map(title=>

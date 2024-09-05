@@ -30,7 +30,6 @@ export const Carousel=()=>{
             }
     }
     const blog=blogs[blogIndex]
-    console.log('blog is',blog)
     useEffect(()=>{
      fetchBlogs(setBlogs)
     },[])
@@ -41,16 +40,17 @@ export const Carousel=()=>{
    else
    {
     return <div className="hidden md:block w-[98%] mx-auto h-[651px] relative ">
-    <Link href={`/Blog/${blog.id}`}>
+    <Link href={`/Blog/${blog?.id}`}>
 <div className='w-full h-[600px] rounded-xl shadow-lg relative' style={{
     backgroundImage: `url(${blog.cover_image })`,
     backgroundSize:'cover',
     backgroundPosition:'center'
+    
 }}>
 <div className='absolute h-[252px] w-1/2 max-w-[598px] shadow-2xl rounded-xl border-solid border-[#E8E8EA] p-10 flex flex-col justify-center  gap-6 bottom-5 left-5 bg-white'>
 <div className='w-full h-[124px] flex flex-col justify-between '>
 <TagsIcon blog={blog}/>
-<p className='leading-10 font-semibold text-xl  lg:text-2xl' >{
+<p className='leading-10 font-semibold text-4xl' >{
 blog.title.split(/\s+/).slice(0,6).join(' ')+' ...'
 }</p>
 </div>
