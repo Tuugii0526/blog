@@ -6,11 +6,11 @@ export const TagsIcon=({blog,special=true})=>{
     let className;
     if(special)
     {
-        className='h-fit w-fit px-3 py-0.5 shadow-lg bg-[#4B6BFB] rounded-md  flex justify-center items-center text-white text-lg'
+        className='h-fit w-fit px-3 py-0.5 shadow-lg bg-[#4B6BFB] rounded-md  flex justify-center items-center text-white text-sm md:text-lg'
     }
     else
     {
-        className='h-7 w-fit px-2 bg-[#4B6BFB] rounded-md flex justify-center items-center text-white text-lg'
+        className='h-7 w-fit px-2 bg-[#4B6BFB] rounded-md flex justify-center items-center text-white text-sm md:text-lg'
     }
 return <div className="w h-fit flex flex-wrap gap-2">
 {fixedTitles.map(title=>
