@@ -4,11 +4,11 @@ export const toUppercaseTags=(tags)=>{
     return  titles.map(title=>title.join(''))
 }
 export const TagsIcon=({blog,special=true})=>{
-    const fixedTitles=toUppercaseTags(blog.tags)
+    const fixedTitles=toUppercaseTags(blog?.tags)
     let className;
     if(special)
     {
-        className='h-fit w-fit px-3 py-0.5 shadow-lg bg-[#4B6BFB] rounded-md  flex justify-center items-center text-white text-sm md:text-lg'
+        className='h-fit w-fit px-3 py-0.5 shadow-lg bg-[#4B6BFB] rounded-md  flex justify-center items-center text-white max-[597px]:text-[8px]  min-[598px]:text-sm'
     }
     else
     {
@@ -16,7 +16,7 @@ export const TagsIcon=({blog,special=true})=>{
     }
 return <div className="w h-fit flex flex-wrap gap-2">
 {fixedTitles.map(title=>
-    <div className={className}>{title}</div>
+    <div className={className} key={title}>{title}</div>
 )}
 </div>
 } 

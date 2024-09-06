@@ -12,14 +12,14 @@ export const Trending=()=>{
         },10000)
     },[sliceStart])
     useEffect(()=>{
-        fetchBlogs(setBlogs,"",20)
+        fetchBlogs(setBlogs,"",5)
     },[])
-    return <div className="w-full h-[390px] flex flex-col gap-[10px]">
+    return <div className="w-full  h-[390px] flex flex-col gap-[10px]">
    <p className="text-center min-[1230px]:text-start text-xl md:text-2xl font-bold text-[#181A2A]">Trending</p>
    <div className="w-full h-[320px] flex justify-around flex-wrap  gap-5 overflow-hidden">
     {
-        slicedBlogs.map(blog=><Link className="block" href={`/Blog/${blog?.id}`}>
-        <TrendingBlog key={blog?.id} blog={blog}/>
+        slicedBlogs.map(blog=><Link  key={blog?.id} className="block" href={`/Blog/${blog?.id}`}>
+        <TrendingBlog blog={blog}/>
             </Link>
         )
     }

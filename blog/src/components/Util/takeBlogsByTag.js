@@ -1,6 +1,6 @@
 export const takeBlogsByTag=(blogs,tag)=>{
     if(tag=='all')
-    {
+    { 
         return blogs
     }
 const selectedBlogs=blogs.map(blog=>{
@@ -13,12 +13,9 @@ const selectedBlogs=blogs.map(blog=>{
                    break;
                 }
         }
-    if(willBeReturnedObject)
-    {
-        return willBeReturnedObject
-    }
+return willBeReturnedObject || 0
 })
-return selectedBlogs
+return selectedBlogs.filter(blog=>blog!=0)
 }
 
 

@@ -19,7 +19,5 @@ Object.keys(tagPerCount).forEach(object=>{
     })
 
 })
-console.log('topNumbers',topNumbers)
-console.log('topTags',topTags)
 return ['all',...new Set(topTags)]
 }

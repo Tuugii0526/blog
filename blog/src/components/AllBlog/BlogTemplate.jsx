@@ -4,7 +4,7 @@ export const BlogTemplate=({blog,isAllBlog})=>{
 
 return <div className="w-[392px] h-[476px] rounded-xl border p-4 flex flex-col gap-4">
  <div className="w-full h-[240px]">
- <img src={`${blog?.cover_image}`} alt='image for the blog' width={'100%'} height={'100%'} />
+ <img src={`${blog?.cover_image}`} alt='image for the blog' className="w-full h-full" />
  </div>
 
 

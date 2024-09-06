@@ -39,7 +39,7 @@ export const Carousel=()=>{
    }
    else
    {
-    return <div className="hidden md:block w-[98%] mx-auto h-[651px] relative ">
+    return <div className="hidden md:block w-[98%] mx-auto h-[651px]  relative ">
     <Link href={`/Blog/${blog?.id}`}>
 <div className='w-full h-[600px] rounded-xl shadow-lg relative' style={{
     backgroundImage: `url(${blog.cover_image })`,
