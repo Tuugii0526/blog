@@ -1,13 +1,13 @@
-import { useSetTagContext } from "./AllBlog"
+import { useSetTagContext,useTagContext } from "./AllBlog"
 import { useState } from "react"
 export const Tag=({title})=>{
     const titleLettersArray=title.split('')
  titleLettersArray[0]=titleLettersArray[0].toUpperCase()
  const upperTitle=titleLettersArray.join('')
-   const [isTagActive,setIsTagActive]=useState(false)
-    const setTag=useSetTagContext()
+ const setTag=useSetTagContext()
+ const tag=useTagContext()
     let className
-    if(isTagActive)
+    if(tag==title)
     {
         className='text-[#D4A373]'
     }
@@ -17,6 +17,5 @@ export const Tag=({title})=>{
     }
     return <button className={`${className} font-bold text-xs leading-6`} onClick={()=>{
         setTag(title)
-        setIsTagActive(!isTagActive)
     }}>{upperTitle}</button>
 }
