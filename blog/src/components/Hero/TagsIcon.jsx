@@ -1,10 +1,20 @@
-export const toUppercaseTags=(tags)=>{
-    const titles=tags.split(/,\s/).map(title=>title.split(''))
+import { newBlog } from "../Util/newBlog"
+export const toUppercaseTags=(tagsArray)=>{
+    const titles=tagsArray.map(title=>title.split(''))
     titles.forEach(title=>{title[0]=title[0].toUpperCase()})
     return  titles.map(title=>title.join(''))
 }
 export const TagsIcon=({blog,special=true})=>{
-    const fixedTitles=toUppercaseTags(blog?.tags)
+    let fixedTitles;
+    if(blog?.tag_list)
+    {
+
+         fixedTitles=toUppercaseTags(blog.tag_list)
+    }
+    else
+    {
+        fixedTitles=toUppercaseTags(newBlog?.tag_list)
+    }
     let className;
     if(special)
     {

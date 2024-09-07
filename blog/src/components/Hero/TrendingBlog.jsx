@@ -1,5 +1,6 @@
 import { TagsIcon } from "./TagsIcon"
 import { useState } from "react"
+import { newImage } from "../Util/newBlog"
 export const TrendingBlog=({blog})=>{
     const [hover,setHover]=useState(false)
     let className
@@ -17,7 +18,7 @@ return <div className={`w-[289px] h-full relative rounded-xl shadow-lg border-so
     setHover(false)
 }}>
 <div className={`absolute inset-x-0 inset-y-0 w-full h-full ${hover ?'scale-110':''}`} style={{
-    backgroundImage:`url(${blog?.cover_image})`,
+    backgroundImage:`url(${blog?.cover_image || newImage})`,
     backgroundPosition:'center',
     backgroundSize:"cover"
 }} ></div>
@@ -27,7 +28,7 @@ return <div className={`w-[289px] h-full relative rounded-xl shadow-lg border-so
 <div className="max-w-[90%]   h-fit flex flex-wrap">
 <TagsIcon blog={blog}/>
 </div>
-<div className="w-[90%] overflow-hidden max-[597px]:text-[8px]  min-[598px]:text-sm  font-semibold text-white t ">{blog?.description} 
+<div className="w-[90%] overflow-hidden max-[597px]:text-[8px]  min-[598px]:text-sm  font-semibold text-white t ">{blog?.description || 'No description'} 
     {!hover && <div className="absolute flex gap-1 bottom-2 right-8 scale-[2] "> 
         <div className="w-[2px] h-[2px] animate-pulse rounded-full  bg-gradient-to-r from-violet-600 to-pink-600"></div> 
         <div className="w-[2px] h-[2px] rounded-full animate-pulse  bg-gradient-to-b from-cyan-500 to-blue-800"></div> 
