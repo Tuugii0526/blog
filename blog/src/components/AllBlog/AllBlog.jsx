@@ -4,6 +4,7 @@ import { selectTags } from '../Util/selectTags'
 import { TagSelection } from './TagSelection'
 import { BlogTemplate } from './blogTemplate'
 import { takeBlogsByTag } from '../Util/takeBlogsByTag'
+import { CheckForTag } from './checkForTag'
 const TagContext=createContext(null)
 const SetTagContext=createContext(null)
 const SetIndexForThreePagesContext=createContext(null)
@@ -19,10 +20,11 @@ export const useSetIndexForThreePagesContext=()=>{
 export const AllBlog=({isAllBlog=true})=>{
     const [blogs,setBlogs]=useState([])
     const [tagSearchedBlogs,setTagSearchedBlogs]=useState([])
-    const [selectionTags,setSelectionTags]=useState([])
+    const [allTags,setAllTags]=useState([])
     const [indexForFifteenPages,setIndexForFifteenPages]=useState(0)
     const [indexForThreePages,setIndexForThreePages]=useState(3)
     const [tag,setTag]=useState('all')
+    const [isTagEditing,setIsTagEditing]=useState(false)
     let blogsRef=useRef(null)
     let bottomButtonRef=useRef(null)
     const getMap=()=>{
@@ -35,7 +37,6 @@ export const AllBlog=({isAllBlog=true})=>{
     }
   const goToTheBlog=(blog)=>{
    const node=blogsRef.current?.get(blog?.id)
-   console.log('node is ',node)
    node?.scrollIntoView({
     behavior:"smooth",
     block:'nearest',
@@ -47,7 +48,7 @@ export const AllBlog=({isAllBlog=true})=>{
    },[])
    useEffect(()=>{
     setTagSearchedBlogs(takeBlogsByTag(blogs,tag))
-    setSelectionTags(selectTags(blogs))
+    setAllTags(selectTags(blogs))
    },[blogs])
    useEffect(()=>{
        setTagSearchedBlogs(takeBlogsByTag(blogs,tag))
@@ -55,23 +56,42 @@ export const AllBlog=({isAllBlog=true})=>{
        setIndexForThreePages(3)
 },[tag])
 useEffect(()=>{
-goToTheBlog(tagSearchedBlogs[indexForFifteenPages+indexForThreePages])
+goToTheBlog(tagSearchedBlogs[indexForFifteenPages+indexForThreePages-1])
 },[indexForThreePages])
 useEffect(()=>{
     goToTheBlog(tagSearchedBlogs[indexForFifteenPages])
 },[indexForFifteenPages])
-    return <div className="w-full h-fit max-h-[1701px] flex flex-col gap-20  ">
-        <div className="w-full h-[85px] flex flex-col justify-between ">
+    if(isTagEditing)
+    { 
+        return <ul className='flex flex-col items-center relative w-[80%] max-h-[600px] mx-auto rounded-2xl border-t-2 border-t-[#D4A373] border-b-2 border-b-[#D4A373]   overflow-y-scroll   shadow-lg'>
+            <p className='font-bold text-xs leading-6 text-white bg-[#D4A373] border-t-2 border-t-white px-8 text-center sticky top-0 rounded-xl'>Tags   editing</p>
+         {allTags.map(tag=>{
+            return <li key={tag.id}>
+            <CheckForTag setAllTags={setAllTags} allTags={allTags} tag={tag}/>
+          </li>
+         })}
+         <button className='font-bold text-xs leading-6 text-white bg-[#D4A373]  sticky bottom-0 rounded-xl px-8' onClick={()=>{
+            setIsTagEditing(!isTagEditing)
+         }}>Done</button>
+        </ul>
+    }
+    else
+    {
+        return <div className="w-full h-fit max-h-[1701px] flex flex-col gap-20  ">
+        <div className="w-full h-[85px] flex flex-col justify-between relative">
     <p className="text-center min-[1230px]:text-start text-xl md:text-2xl font-bold">All Blog Post</p>
         {isAllBlog &&
         <SetTagContext.Provider value={setTag}>
             <TagContext.Provider value={tag}>
                 <SetIndexForThreePagesContext.Provider value={setIndexForThreePages}>
-                <TagSelection selectionTags={selectionTags}/>
+                <TagSelection allTags={allTags}/>
                 </SetIndexForThreePagesContext.Provider>
             </TagContext.Provider>
         </SetTagContext.Provider>
         }
+        <button className='absolute bottom-0 right-[70px] px-3 ring-[#D4A373] text-[#495057] rounded-md font-bold text-xs leading-6 ring-1' onClick={()=>{
+            setIsTagEditing(!isTagEditing)
+        }}>Edit tags</button>
         </div>
        <div className='relative h-fit  flex flex-col items-center gap-2' >
         {indexForThreePages>6 && <button  className='sticky top-0 ring-1 px-4 py-1 rounded-md hover:bg-[#4B6BFB0D]  hover:text-[#4B6BFB]' onClick={()=>{
@@ -126,4 +146,5 @@ useEffect(()=>{
        </div>
           
     </div>
+    }
 }

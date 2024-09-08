@@ -3,7 +3,7 @@ import { useSetIndexForThreePagesContext } from './AllBlog'
 export const ViewAll=()=>{
     const [isClicked,setIsClicked]=useState(false)
     const setIndexForThreePages=useSetIndexForThreePagesContext()
-    return <button className={`font-bold text-xs leading-6 text-[#D4A373]`} onClick={()=>{
+    return <button className={`font-bold text-xs leading-6 text-[#D4A373] mr-2`} onClick={()=>{
         setIsClicked(!isClicked)
         if(!isClicked)
         {
@@ -14,6 +14,6 @@ export const ViewAll=()=>{
             setIndexForThreePages(6)
         }
     }}>{
-        isClicked ? 'View a few' :'View all'}
+        isClicked ? 'View less' :'View all'}
         </button>
 }
