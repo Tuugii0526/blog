@@ -25,6 +25,34 @@ export const AllBlog=({isAllBlog=true})=>{
     const [indexForThreePages,setIndexForThreePages]=useState(3)
     const [tag,setTag]=useState('all')
     const [isTagEditing,setIsTagEditing]=useState(false)
+    let allTagsNotForState=[...allTags]
+    //for tags editing
+    const [isSortingAlphabet,setIsSortingAlphabet]=useState(false)
+    const [tagSearchText,setTagSearchText]=useState('')
+    //for tags editing
+    if(isSortingAlphabet)
+    { 
+        allTagsNotForState.sort((a,b)=>{
+            if(a.title<b.title)
+            {
+                return -1
+            }
+            else
+            {
+                return 1
+            }
+            return 0
+        })
+    }
+    if(tagSearchText)
+    {
+        allTagsNotForState=allTagsNotForState.filter(tag=>{
+            if(tag.title.indexOf(tagSearchText.toLowerCase())!==-1)
+            {
+                return tag
+            }
+        })
+    }
     let blogsRef=useRef(null)
     let bottomButtonRef=useRef(null)
     const getMap=()=>{
@@ -63,9 +91,21 @@ useEffect(()=>{
 },[indexForFifteenPages])
     if(isTagEditing)
     { 
-        return <ul className='flex flex-col items-center relative w-[80%] max-h-[600px] mx-auto rounded-2xl border-t-2 border-t-[#D4A373] border-b-2 border-b-[#D4A373]   overflow-y-scroll   shadow-lg'>
+        return <ul className='flex flex-col gap-2 items-center relative w-[80%] max-h-[600px] mx-auto rounded-2xl border-t-2 border-t-[#D4A373] border-b-2 border-b-[#D4A373]   overflow-y-scroll   shadow-lg'>
             <p className='font-bold text-xs leading-6 text-white bg-[#D4A373] border-t-2 border-t-white px-8 text-center sticky top-0 rounded-xl'>Tags   editing</p>
-         {allTags.map(tag=>{
+            <div className='flex justify-center gap-2 sticky top-8 bg-white'>
+                <label className='gap-0.5' >
+                    <input type="checkbox" checked={isSortingAlphabet}className='text-xs' onChange={(e)=>{setIsSortingAlphabet(e.target.checked)}}/>
+                    Sort alphabetically
+                </label>
+                <label >
+                    <input type="text"  className='px-4 ring-1 rounded-sm ' value={tagSearchText} placeholder='Search tag' onChange={(e)=>{
+                        setTagSearchText(e.target.value)
+                    }} />
+                </label>
+            </div>
+
+         {allTagsNotForState.map(tag=>{
             return <li key={tag.id}>
             <CheckForTag setAllTags={setAllTags} allTags={allTags} tag={tag}/>
           </li>
@@ -89,9 +129,11 @@ useEffect(()=>{
             </TagContext.Provider>
         </SetTagContext.Provider>
         }
-        <button className='absolute bottom-0 right-[70px] px-3 ring-[#D4A373] text-[#495057] rounded-md font-bold text-xs leading-6 ring-1' onClick={()=>{
-            setIsTagEditing(!isTagEditing)
-        }}>Edit tags</button>
+        {
+            isAllBlog && <button className='absolute bottom-0 right-[70px] px-3 ring-[#D4A373] text-[#495057] rounded-md font-bold text-xs leading-6 ring-1' onClick={()=>{
+                setIsTagEditing(!isTagEditing)
+            }}>Edit tags</button>
+        }
         </div>
        <div className='relative h-fit  flex flex-col items-center gap-2' >
         {indexForThreePages>6 && <button  className='sticky top-0 ring-1 px-4 py-1 rounded-md hover:bg-[#4B6BFB0D]  hover:text-[#4B6BFB]' onClick={()=>{
