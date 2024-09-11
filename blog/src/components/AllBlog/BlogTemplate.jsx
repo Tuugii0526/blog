@@ -11,7 +11,7 @@ return <div className="w-[392px] h-[476px] rounded-xl border shadow-2xl p-4 flex
  <div className="w-full h-[188px] flex flex-col p-2 justify-between">
  <div className="w-full h-[128px] flex flex-col justify-between">
  <TagsIcon blog={blog} special={false}/>
- <div className="w-full h-[84px] ">{blog?.description}</div>
+ <div className="w-full h-[84px] overflow-hidden">{blog?.description}</div>
  </div>
 
 <div className="w-full h-[36px] flex items-center gap-5">

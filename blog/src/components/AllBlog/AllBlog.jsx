@@ -106,7 +106,7 @@ useEffect(()=>{
             </div>
 
          {allTagsNotForState.map(tag=>{
-            return <li key={tag.id}>
+            return <li key={tag.id} className='w-full'>
             <CheckForTag setAllTags={setAllTags} allTags={allTags} tag={tag}/>
           </li>
          })}
