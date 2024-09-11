@@ -1,10 +1,10 @@
 import {useState,createContext,useContext,useEffect,useRef} from 'react'
-import { fetchBlogs } from '../Util/fetchBlogs'
 import { selectTags } from '../Util/selectTags'
 import { TagSelection } from './TagSelection'
 import { BlogTemplate } from './blogTemplate'
 import { takeBlogsByTag } from '../Util/takeBlogsByTag'
 import { CheckForTag } from './checkForTag'
+import { useInitialAllBlogsContext } from '../ContextStateProvider'
 const TagContext=createContext(null)
 const SetTagContext=createContext(null)
 const SetIndexForThreePagesContext=createContext(null)
@@ -18,7 +18,9 @@ export const useSetIndexForThreePagesContext=()=>{
     return useContext(SetIndexForThreePagesContext)
 }
 export const AllBlog=({isAllBlog=true})=>{
-    const [blogs,setBlogs]=useState([])
+    const initialAllBlogs=useInitialAllBlogsContext()
+    const [blogs,setBlogs]=useState(initialAllBlogs)
+    console.log('blogs inside allBlog',blogs)
     const [tagSearchedBlogs,setTagSearchedBlogs]=useState([])
     const [allTags,setAllTags]=useState([])
     const [indexForFifteenPages,setIndexForFifteenPages]=useState(0)
@@ -71,9 +73,7 @@ export const AllBlog=({isAllBlog=true})=>{
     inline:'center'
    })
 }
-   useEffect(()=>{
-    fetchBlogs(setBlogs,'',0,1000)
-   },[])
+  
    useEffect(()=>{
     setTagSearchedBlogs(takeBlogsByTag(blogs,tag))
     setAllTags(selectTags(blogs))
