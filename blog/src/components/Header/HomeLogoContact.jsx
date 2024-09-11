@@ -22,7 +22,7 @@ return <ul className={`flex ${ifFlexCol} ${(!ifFlexCol) ? 'gap-10' : 'gap-2'}`}>
  {
     sections.map((section,i)=>
     (<li key={i} className={`text-[#3B3C4A] ${(!ifFlexCol) ? 'hidden' : ''} md:block ${workSans.className}`}  id={section.id}>
-<Link href={`/${section.title==='Home' ? '/':section.title}`}>{section.title}</Link>
+<Link href={`/${section.title==='Home' ? '':section.title}`}>{section.title}</Link>
     </li>))
  }
 </ul>
