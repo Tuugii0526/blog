@@ -6,7 +6,7 @@ export const toUppercaseTags=(tagsArray)=>{
 }
 export const TagsIcon=({blog,special=true})=>{
     let fixedTitles;
-    if(blog?.tag_list)
+    if(blog?.tag_list.length)
     {
 
          fixedTitles=toUppercaseTags(blog.tag_list)

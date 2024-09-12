@@ -20,7 +20,6 @@ export const useSetIndexForThreePagesContext=()=>{
 export const AllBlog=({isAllBlog=true})=>{
     const initialAllBlogs=useInitialAllBlogsContext()
     const [blogs,setBlogs]=useState(initialAllBlogs)
-    console.log('blogs inside allBlog',blogs)
     const [tagSearchedBlogs,setTagSearchedBlogs]=useState([])
     const [allTags,setAllTags]=useState([])
     const [indexForFifteenPages,setIndexForFifteenPages]=useState(0)
