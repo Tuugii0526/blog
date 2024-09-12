@@ -21,7 +21,7 @@ export const HomeLogoContact=({ifFlexCol=''})=>{
 return <ul className={`flex ${ifFlexCol} ${(!ifFlexCol) ? 'gap-10' : 'gap-2'}`}>
  {
     sections.map((section,i)=>
-    (<li key={i} className={`text-[#3B3C4A] ${(!ifFlexCol) ? 'hidden' : ''} md:block ${workSans.className}`}  id={section.id}>
+    (<li key={i} className={`text-[#3B3C4A] hover:underline hover:text-[#D4A373] ${(!ifFlexCol) ? 'hidden' : ''} md:block ${workSans.className}`}  id={section.id}>
 <Link href={`/${section.title==='Home' ? '':section.title}`}>{section.title}</Link>
     </li>))
  }

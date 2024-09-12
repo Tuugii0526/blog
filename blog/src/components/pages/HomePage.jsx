@@ -16,7 +16,7 @@ handleMenuClick()
   <div className=" min-w-[320px] max-w-[1230px]  flex flex-col gap-[100px] mx-auto ">
   <Carousel/>
   <Trending/>
-  <AllBlog/>
+  <AllBlog key={0} />
 </div>
   </div>
 }

@@ -18,7 +18,7 @@ return <div className={`w-[289px] h-full relative rounded-xl shadow-lg border-so
     setHover(false)
 }}>
 <div className={`absolute inset-x-0 inset-y-0 w-full h-full ${hover ?'scale-110':''}`} style={{
-    backgroundImage:`url(${blog?.cover_image ?? newImage})`,
+    backgroundImage:`url(${blog?.cover_image || newImage})`,
     backgroundPosition:'center',
     backgroundSize:"cover"
 }} ></div>

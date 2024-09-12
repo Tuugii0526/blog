@@ -5,6 +5,7 @@ import { BlogTemplate } from './blogTemplate'
 import { takeBlogsByTag } from '../Util/takeBlogsByTag'
 import { CheckForTag } from './checkForTag'
 import { useInitialAllBlogsContext } from '../ContextStateProvider'
+import Link from 'next/link'
 const TagContext=createContext(null)
 const SetTagContext=createContext(null)
 const SetIndexForThreePagesContext=createContext(null)
@@ -17,13 +18,14 @@ export const useTagContext=()=>{
 export const useSetIndexForThreePagesContext=()=>{
     return useContext(SetIndexForThreePagesContext)
 }
-export const AllBlog=({isAllBlog=true})=>{
+export const AllBlog=({isAllBlog=true,threeOrNine=3})=>{
     const initialAllBlogs=useInitialAllBlogsContext()
     const [blogs,setBlogs]=useState(initialAllBlogs)
     const [tagSearchedBlogs,setTagSearchedBlogs]=useState([])
     const [allTags,setAllTags]=useState([])
     const [indexForFifteenPages,setIndexForFifteenPages]=useState(0)
-    const [indexForThreePages,setIndexForThreePages]=useState(3)
+    const [indexForThreePages,setIndexForThreePages]=useState(threeOrNine)
+    console.log('index for three pages',threeOrNine)
     const [tag,setTag]=useState('all')
     const [isTagEditing,setIsTagEditing]=useState(false)
     let allTagsNotForState=[...allTags]
@@ -55,7 +57,6 @@ export const AllBlog=({isAllBlog=true})=>{
         })
     }
     let blogsRef=useRef(null)
-    let bottomButtonRef=useRef(null)
     const getMap=()=>{
         if(!blogsRef.current)
         {
@@ -80,7 +81,7 @@ export const AllBlog=({isAllBlog=true})=>{
    useEffect(()=>{
        setTagSearchedBlogs(takeBlogsByTag(blogs,tag))
        setIndexForFifteenPages(0)
-       setIndexForThreePages(3)
+       setIndexForThreePages(threeOrNine)
 },[tag])
 useEffect(()=>{
 goToTheBlog(tagSearchedBlogs[indexForFifteenPages+indexForThreePages-1])
@@ -136,14 +137,10 @@ useEffect(()=>{
         </div>
        <div className='relative h-fit  flex flex-col items-center gap-2' >
         {indexForThreePages>6 && <button  className='sticky top-0 ring-1 px-4 py-1 rounded-md hover:bg-[#4B6BFB0D]  hover:text-[#4B6BFB]' onClick={()=>{
-            const bottomButton=bottomButtonRef.current
-            bottomButton.scrollIntoView({
-                behavior:'smooth',
-                block:'nearest',
-                inline:'center'
-            })
+            goToTheBlog(tagSearchedBlogs[indexForFifteenPages+indexForThreePages-1])
         }}>To the bottom</button>}
-       <ul className='w-full h-fit  max-h-[1584px] flex justify-around gap-y-5 items-center flex-wrap overflow-y-scroll '>
+        {/* flex justify-around gap-y-5 items-center flex-wrap */}
+       <ul className='w-full h-fit   max-h-[1584px] flex justify-around gap-y-5 gap-x-5 items-center flex-wrap min-[1230px]:grid min-[1230px]:grid-cols-3 overflow-y-scroll '>
             {tagSearchedBlogs.slice(indexForFifteenPages,indexForFifteenPages+15).slice(0,indexForThreePages).map(blog=><li ref={(node)=>{
               const map=getMap()
               if(node)
@@ -155,11 +152,13 @@ useEffect(()=>{
                 map.delete(blog?.id)
               }
             }} key={blog?.id}>
+                <Link href={`/Blog/${blog?.id}`}>
                 <BlogTemplate blog={blog} isAllBlog={isAllBlog}/>
+                </Link>
             </li>)}
         </ul>
         <div className='flex justify-center gap-10'>
-        {indexForThreePages>6 && <button ref={bottomButtonRef} className=' ring-1 px-4 py-1 rounded-md  hover:bg-[#4B6BFB0D]  hover:text-[#4B6BFB]' onClick={()=>{
+        {indexForThreePages>6 && <button className=' ring-1 px-4 py-1 rounded-md  hover:bg-[#4B6BFB0D]  hover:text-[#4B6BFB]' onClick={()=>{
             goToTheBlog(tagSearchedBlogs[indexForFifteenPages])
         }}>Upper blog</button>}
         <button className='ring-1 px-4 py-1 rounded-md z-10 hover:bg-[#4B6BFB0D]  hover:text-[#4B6BFB] ' onClick={()=>{
@@ -168,13 +167,13 @@ useEffect(()=>{
                if(indexForFifteenPages+30>tagSearchedBlogs.length)
                {
                 setIndexForFifteenPages(0)
-                setIndexForThreePages(3)
+                setIndexForThreePages(threeOrNine)
                   
                }
                else
                {
                 setIndexForFifteenPages(p=>p+15)
-                setIndexForThreePages(3)
+                setIndexForThreePages(threeOrNine)
                
                }
             }
