@@ -39,9 +39,9 @@ export const Carousel=()=>{
    }
    else
    {
-    return <div className="hidden md:block w-[98%] mx-auto h-[651px]  relative ">
+    return <div className=" w-[98%] mx-auto h-[350px] md:h-[651px]  relative ">
     <Link href={`/Blog/${blog?.id}`}>
-<div className='w-full h-[600px] rounded-xl shadow-lg relative' style={{
+<div className='w-full h-full md:h-[600px] rounded-xl shadow-lg relative' style={{
     backgroundImage: `url(${blog?.cover_image || newImage })`,
     backgroundSize:'cover',
     backgroundPosition:'center'
@@ -50,7 +50,7 @@ export const Carousel=()=>{
 <div className='absolute h-[252px] w-1/2 max-w-[598px] shadow-2xl rounded-xl border-solid border-[#E8E8EA] p-10 flex flex-col justify-center  gap-6 bottom-5 left-5 bg-white'>
 <div className='w-full h-[124px] flex flex-col justify-between '>
 <TagsIcon blog={blog}/>
-<p className='leading-10 font-semibold text-4xl line-clamp-2' >{ (blog.title) ?
+<p className='leading-10 font-semibold text-xs sm:text-lg md:text-xl lg:text-2xl' >{ (blog.title) ?
 blog?.title.split(/\s+/).slice(0,6).join(' ')+' ...'
 : 'No title'
 }</p>

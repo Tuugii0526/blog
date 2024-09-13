@@ -3,6 +3,7 @@ import Footer from "../Footer/Footer"
 import Header from "../Header/Header"
 
 const MainLayout=({children})=>{
+  
     return<ContextStateProvider>
          <div className="relative flex flex-col gap-[80px] md:gap-[100px] ">
 

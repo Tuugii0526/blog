@@ -44,7 +44,7 @@ export function ContextStateProvider({children}){
       <Header/>
       </div>
       </div>
-      <p className='text-center font-extrabold '>Loading</p>
+      <p className='text-center font-extrabold '>Loading   ...</p>
       <div className="w-full  bg-[#F6F6F7] relative bottom-0">
         <div className=" min-w-[320px] max-w-[1230px]  mx-auto relative">
          <Footer/>
