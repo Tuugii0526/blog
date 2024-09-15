@@ -5,5 +5,5 @@ export const newImage=()=>{
     return img
 }
 export const newBlog={
-    tag_list:['no title']
+    tag_list:['no tag']
 }
