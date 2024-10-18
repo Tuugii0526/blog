@@ -14,13 +14,13 @@ return <div >
 <ViewInDetail description={blog?.description}/>
  </div>
 
-<div >
-{/* {!isAllBlog && <>
+<div className="flex justify-around">
+{!isAllBlog && <>
 <div className="h-full w-9 rounded-[50%]">
-    <img src={`${blog?.user?.profile_image || generatedImage}`} alt="profile image" width={'100%'} height={'100%'}/>
+    <img src={`${blog?.user?.profile_image || generatedImage}`} alt="img" width={'100%'} height={'100%'}/>
 </div>
 <p className="font-medium text-[#97989F]">{blog?.user.name}</p>
-</> } */}
+</> }
 <p className='text-[#97989F] text-xs leading-6 font-normal min-[480px]:text-sm'>{dateFormatter(blog)}</p>
 </div>
  </div>

@@ -12,10 +12,34 @@ export const useTagContext=()=>{
 export const AllBlogSub=({blogs,allTags,isAllBlog})=>{
     const [tag,setTag]=useState(localStorage.getItem('tag') || "all")
     localStorage.setItem("tag",tag)
+    const includedTags=JSON.parse(localStorage.getItem("includedTags"))
+    let tagsLocalTagsIncluded;
+    if(includedTags)
+    { 
+       tagsLocalTagsIncluded=allTags.map(tag=>{
+       let includedTag
+       for(let i=0;i<includedTags.length;i++)
+    {  
+        if(includedTags[i]?.title===tag?.title)
+                {
+                  includedTag={...tag,included:includedTags[i]["included"]}
+                }
+    }
+       if(includedTag)
+       {
+        return includedTag
+       }
+      else 
+      {
+        return tag
+      }
+       })
+    }
+    
 return <SetTagContext.Provider value={setTag}>
 <TagContext.Provider value={tag}>
 
-        <TagsDisplaying allTags={allTags} isAllBlog={isAllBlog}/>
+        <TagsDisplaying allTags={tagsLocalTagsIncluded || allTags} isAllBlog={isAllBlog}/>
         <BlogsDisplaying blogs={blogs} isAllBlog={isAllBlog}/>
 
 </TagContext.Provider>

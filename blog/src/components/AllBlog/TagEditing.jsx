@@ -6,10 +6,6 @@ export const  TagEditing=({setIsTagEditing,setAllTags,allTags})=>{
     const [isSortingAlphabet,setIsSortingAlphabet]=useState(false)
     const [tagSearchText,setTagSearchText]=useState('')
     //for tags editing
-    const includedTags=allTagsNotForState.filter(tag=>tag.included)
-    // localStorage.removeItem("includedTags")
-    localStorage.setItem("includedTags",JSON.stringify(includedTags))
-    
     if(isSortingAlphabet)
     { 
         allTagsNotForState.sort((a,b)=>{
@@ -35,7 +31,7 @@ export const  TagEditing=({setIsTagEditing,setAllTags,allTags})=>{
     }
   return <ul className='flex flex-col gap-2 items-center relative w-[80%] max-h-[600px] mx-auto rounded-2xl border-t-2 border-t-[#D4A373] border-b-2 border-b-[#D4A373]   overflow-y-scroll   shadow-lg'>
   <p className='font-bold text-xs leading-6 text-white bg-[#D4A373] border-t-2 border-t-white px-8 text-center sticky top-0 rounded-xl'>Tags   editing</p>
-  <div className='flex justify-center gap-2 sticky top-8 bg-white'>
+  <div className='flex flex-col justify-center gap-2 sticky top-8 bg-white'>
       <label className='gap-0.5' >
           <input type="checkbox" checked={isSortingAlphabet}className='text-xs' onChange={(e)=>{setIsSortingAlphabet(e.target.checked)}}/>
           Sort alphabetically

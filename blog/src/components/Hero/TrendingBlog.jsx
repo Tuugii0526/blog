@@ -1,6 +1,7 @@
 import { TagsIcon } from "./TagsIcon"
 import { useState } from "react"
 import { newImage } from "../Util/newBlog"
+import Link from "next/link"
 export const TrendingBlog=({blog})=>{
     const [hover,setHover]=useState(false)
     const [generatedImage,setGeneratedImage]=useState(newImage)
@@ -13,7 +14,7 @@ export const TrendingBlog=({blog})=>{
     {
         className='h-[35%]'
     }
-return <div className={` w-[40%] h-full inset-x-0 inset-y-0 absolute  rounded-xl shadow-lg border-solid border-[1px] border-gray-300 overflow-hidden transition duration-500 `} onPointerEnter={()=>{
+return <div className={` w-1/3 h-full flex-shrink-0   rounded-xl shadow-lg border-solid border-[1px] border-gray-300 overflow-hidden transition duration-500 relative snap-start`} onPointerEnter={()=>{
     setHover(true)
 }} onPointerLeave={()=>{
     setHover(false)
@@ -23,10 +24,10 @@ return <div className={` w-[40%] h-full inset-x-0 inset-y-0 absolute  rounded-xl
     backgroundPosition:'center',
     backgroundSize:"cover"
 }} ></div>
-
-<div className={`w-full h-full relative px-5 ${hover ? 'bg-slate-900 opacity-90':''}`}>
-<div className={`${className} w-full  absolute max-[597px]:top-[5%] min-[597px]:bottom-5 flex flex-col gap-2`}>
-<div className="max-w-[90%]   h-fit flex flex-wrap">
+<Link href={`/Blog/${blog.id}`}>
+<div className={`w-full h-full relative min-[480px]:px-5 ${hover ? 'bg-slate-900 opacity-90':''}`}>
+<div className={`${className} w-full  absolute bottom-5 flex flex-col gap-2`}>
+<div className="max-w-[90%] h-fit flex flex-wrap">
 <TagsIcon blog={blog}/>
 </div>
 <div className="w-[90%] overflow-hidden max-[597px]:text-[8px]  min-[598px]:text-sm  font-semibold text-white t ">{blog?.description || 'No description'} 
@@ -34,5 +35,7 @@ return <div className={` w-[40%] h-full inset-x-0 inset-y-0 absolute  rounded-xl
 </div>
 </div>
 </div>
+</Link>
+
 </div>
 } 

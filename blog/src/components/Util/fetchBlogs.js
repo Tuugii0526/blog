@@ -24,7 +24,7 @@ import { getAllCategoryBlogsWithAllTags } from "./selectTags"
  }
  const fetchTopCategoryBlogs= async(topObject)=>{
     try{
-        const response =await fetch(`https://dev.to/api/articles/latest?per_page=1000&top=1`);
+        const response =await fetch(`https://dev.to/api/articles/latest?per_page=1000&top=5`);
         const data=await response.json();
         topObject.blogs.push(...data)
         return Promise.resolve()
