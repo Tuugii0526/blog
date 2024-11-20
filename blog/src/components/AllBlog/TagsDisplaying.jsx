@@ -10,7 +10,6 @@ export const TagsDisplaying = ({ allTags, isAllBlog }) => {
       .filter((tag) => tag.included)
       .map((tag) => {
         let newIncludedTag;
-        let isTagExists;
         for (let i = 0; i < includedTags.length; i++) {
           if (includedTags[i]?.title === tag?.title) {
             newIncludedTag = { ...includedTags[i] };
@@ -46,9 +45,8 @@ export const TagsDisplaying = ({ allTags, isAllBlog }) => {
           <>
             <TagSelection allTags={copiedAllTags} />
             <button
-              className="w-fit ring-1 ring-[#D4A373] font-bold text-xs text-[#495057] rounded-md "
+              className="w-fit ring-1 px-2 py-1 ring-[#D4A373] font-bold text-xs text-[#495057] rounded-md "
               onClick={() => {
-                // setIsTagEditing(!isTagEditing)
                 dialogRef.current.showModal();
               }}
             >
@@ -65,9 +63,3 @@ export const TagsDisplaying = ({ allTags, isAllBlog }) => {
     </>
   );
 };
-
-// TagEditing({
-//     setIsTagEditing,
-//     setAllTags,
-//     allTags,
-//   })
