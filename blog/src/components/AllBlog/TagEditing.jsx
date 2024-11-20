@@ -24,7 +24,7 @@ export const TagEditing = forwardRef(function TagEditing(props, ref) {
     });
   }
   return (
-    <dialog className="modal">
+    <dialog className="modal" ref={ref}>
       <div className="modal-box">
         <ul className="flex flex-col gap-2 items-center relative w-[80%] max-h-[600px] mx-auto rounded-2xl border-t-2 border-t-[#D4A373] border-b-2 border-b-[#D4A373]   overflow-y-scroll   shadow-lg">
           <p className="font-bold text-xs leading-6 text-white bg-[#D4A373] border-t-2 border-t-white px-8 text-center sticky top-0 rounded-xl">
