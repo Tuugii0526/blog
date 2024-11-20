@@ -18,7 +18,7 @@ export const CheckForTag = ({ setAllTags, allTags, tag }) => {
         Included blogs:{" "}
         <span className="font-bold text-xs leading-6">{tag.included_blog}</span>
       </p>
-      <label className="flex items-center text-center font-bold text-xs leading-6">
+      <label className="flex items-center gap-1 font-bold text-xs leading-6">
         <input
           type="checkbox"
           checked={tag.included}
