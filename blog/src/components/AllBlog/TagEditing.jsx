@@ -1,5 +1,5 @@
 import { CheckForTag } from "./CheckForTag";
-import { useState, forwardRef, useEffect } from "react";
+import { useState, forwardRef } from "react";
 export const TagEditing = forwardRef(function TagEditing(props, ref) {
   const { allTags, setAllTags } = props;
   let allTagsNotForState = [...allTags];
@@ -7,15 +7,6 @@ export const TagEditing = forwardRef(function TagEditing(props, ref) {
   const [isSortingAlphabet, setIsSortingAlphabet] = useState(false);
   const [tagSearchText, setTagSearchText] = useState("");
   //for tags editing
-  useEffect(() => {
-    function closeDialog() {
-      ref.current.close();
-    }
-    window.addEventListener("click", closeDialog);
-    return () => {
-      window.removeEventListener("click", closeDialog);
-    };
-  }, []);
   if (isSortingAlphabet) {
     allTagsNotForState.sort((a, b) => {
       if (a.title < b.title) {
@@ -33,7 +24,13 @@ export const TagEditing = forwardRef(function TagEditing(props, ref) {
     });
   }
   return (
-    <dialog className="modal" ref={ref}>
+    <dialog
+      className="modal"
+      ref={ref}
+      onClick={() => {
+        ref.current.close();
+      }}
+    >
       <ul
         className="flex flex-col gap-2 items-center relative w-[80%] max-h-[600px] mx-auto rounded-2xl border-t-2 border-t-[#D4A373] border-b-2 border-b-[#D4A373]   overflow-y-scroll   shadow-lg modal-box"
         onClick={(e) => {
