@@ -66,13 +66,14 @@ export const TagEditing = forwardRef(function TagEditing(props, ref) {
               </li>
             );
           })}
-          <div className="modal-action">
-            <form action="dialog">
-              <button className="font-bold text-xs leading-6 text-white bg-[#D4A373]  sticky bottom-0 rounded-xl px-8">
-                Done
-              </button>
-            </form>
-          </div>
+          <button
+            className="font-bold text-xs leading-6 text-white bg-[#D4A373]  sticky bottom-0 rounded-xl px-8"
+            onClick={() => {
+              ref.current.close();
+            }}
+          >
+            Done
+          </button>
         </ul>
       </div>
     </dialog>
